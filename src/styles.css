@@ -1,33 +1,8 @@
-/*
- * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
- * - Keep every @import in this top block, above @theme and the rest of the file. Install an
- *   npm package before @importing its CSS. Never @import a remote URL (web fonts, CDN CSS): the
- *   build resolves @import from the filesystem. Load those with a <link> in the head() of
- *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
- */
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
-/*
- * Design system definition.
- *
- * The design lives in this file: oklch color tokens on the shadcn variables
- * (--background, --foreground, --primary, --secondary, --muted, --accent, ...) plus
- * new tokens as needed, font tokens, and custom styles and animations.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -70,77 +45,113 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --radius: 0.5rem;
+  --background: oklch(0.978 0.021 77);
+  --foreground: oklch(0.265 0.043 18);
+  --card: oklch(0.994 0.012 76);
+  --card-foreground: oklch(0.265 0.043 18);
+  --popover: oklch(0.994 0.012 76);
+  --popover-foreground: oklch(0.265 0.043 18);
+  --primary: oklch(0.48 0.13 9);
+  --primary-foreground: oklch(0.985 0.014 78);
+  --secondary: oklch(0.9 0.054 63);
+  --secondary-foreground: oklch(0.31 0.051 21);
+  --muted: oklch(0.952 0.025 72);
+  --muted-foreground: oklch(0.48 0.038 22);
+  --accent: oklch(0.91 0.063 11);
+  --accent-foreground: oklch(0.33 0.085 15);
+  --destructive: oklch(0.53 0.18 25);
+  --destructive-foreground: oklch(0.99 0.01 78);
+  --border: oklch(0.86 0.033 45);
+  --input: oklch(0.86 0.033 45);
+  --ring: oklch(0.59 0.11 11);
+  --chart-1: oklch(0.48 0.13 9);
+  --chart-2: oklch(0.66 0.09 50);
+  --chart-3: oklch(0.55 0.1 348);
+  --chart-4: oklch(0.71 0.1 78);
+  --chart-5: oklch(0.59 0.08 24);
+  --sidebar: oklch(0.96 0.027 73);
+  --sidebar-foreground: oklch(0.265 0.043 18);
+  --sidebar-primary: oklch(0.48 0.13 9);
+  --sidebar-primary-foreground: oklch(0.985 0.014 78);
+  --sidebar-accent: oklch(0.91 0.063 11);
+  --sidebar-accent-foreground: oklch(0.33 0.085 15);
+  --sidebar-border: oklch(0.86 0.033 45);
+  --sidebar-ring: oklch(0.59 0.11 11);
+  --letter-wash: linear-gradient(
+    135deg,
+    oklch(0.975 0.026 77) 0%,
+    oklch(0.991 0.012 78) 52%,
+    oklch(0.96 0.04 13) 100%
+  );
+  --letter-apology-wash: linear-gradient(
+    145deg,
+    oklch(0.94 0.055 8) 0%,
+    oklch(0.977 0.029 68) 54%,
+    oklch(0.99 0.014 80) 100%
+  );
+  --letter-champagne: oklch(0.76 0.08 69);
+  --letter-rose: oklch(0.74 0.1 8);
+  --letter-wine: oklch(0.38 0.105 12);
+  --letter-texture: oklch(0.46 0.03 32 / 0.045);
+  --letter-shadow: 0 24px 70px -44px oklch(0.39 0.1 17 / 0.28);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --background: oklch(0.205 0.024 18);
+  --foreground: oklch(0.96 0.022 72);
+  --card: oklch(0.25 0.03 19);
+  --card-foreground: oklch(0.96 0.022 72);
+  --popover: oklch(0.25 0.03 19);
+  --popover-foreground: oklch(0.96 0.022 72);
+  --primary: oklch(0.74 0.1 9);
+  --primary-foreground: oklch(0.23 0.035 16);
+  --secondary: oklch(0.34 0.037 37);
+  --secondary-foreground: oklch(0.95 0.02 72);
+  --muted: oklch(0.29 0.03 20);
+  --muted-foreground: oklch(0.74 0.036 43);
+  --accent: oklch(0.34 0.058 13);
+  --accent-foreground: oklch(0.95 0.022 72);
+  --destructive: oklch(0.65 0.17 25);
+  --destructive-foreground: oklch(0.98 0.01 78);
+  --border: oklch(0.4 0.035 26);
+  --input: oklch(0.4 0.035 26);
+  --ring: oklch(0.69 0.1 11);
+  --chart-1: oklch(0.74 0.1 9);
+  --chart-2: oklch(0.76 0.08 69);
+  --chart-3: oklch(0.66 0.1 348);
+  --chart-4: oklch(0.79 0.1 78);
+  --chart-5: oklch(0.7 0.09 24);
+  --sidebar: oklch(0.24 0.028 18);
+  --sidebar-foreground: oklch(0.96 0.022 72);
+  --sidebar-primary: oklch(0.74 0.1 9);
+  --sidebar-primary-foreground: oklch(0.23 0.035 16);
+  --sidebar-accent: oklch(0.34 0.058 13);
+  --sidebar-accent-foreground: oklch(0.95 0.022 72);
+  --sidebar-border: oklch(0.4 0.035 26);
+  --sidebar-ring: oklch(0.69 0.1 11);
+  --letter-wash: linear-gradient(
+    135deg,
+    oklch(0.205 0.024 18) 0%,
+    oklch(0.25 0.03 19) 54%,
+    oklch(0.28 0.045 12) 100%
+  );
+  --letter-apology-wash: linear-gradient(
+    145deg,
+    oklch(0.31 0.06 12) 0%,
+    oklch(0.25 0.03 19) 60%,
+    oklch(0.22 0.03 30) 100%
+  );
+  --letter-champagne: oklch(0.78 0.08 69);
+  --letter-rose: oklch(0.78 0.11 9);
+  --letter-wine: oklch(0.81 0.09 12);
+  --letter-texture: oklch(0.88 0.02 75 / 0.04);
+  --letter-shadow: 0 24px 70px -44px oklch(0.08 0.03 15 / 0.55);
 }
 
 @layer base {
@@ -151,5 +162,801 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    margin: 0;
+  }
+}
+
+.letter-page {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  place-items: center;
+  padding: 28px;
+  background: var(--letter-wash);
+}
+
+.letter-page__texture {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.62;
+  background-image: repeating-linear-gradient(
+    0deg,
+    var(--letter-texture) 0,
+    var(--letter-texture) 1px,
+    transparent 1px,
+    transparent 5px
+  );
+}
+
+.letter-shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(100%, 920px);
+  min-height: min(860px, calc(100svh - 56px));
+  flex-direction: column;
+  margin-inline: auto;
+}
+
+.letter-topline {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted-foreground);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.letter-topline__mark,
+.letter-topline__lock {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.letter-topline__mark {
+  color: var(--letter-wine);
+}
+
+.letter-topline__mark svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 1.7;
+}
+
+.letter-topline__lock svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 1.7;
+}
+
+.letter-screen {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 0 44px;
+  animation: screen-arrive 640ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.letter-footer {
+  display: flex;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--letter-rose);
+}
+
+.letter-footer span {
+  width: 52px;
+  height: 1px;
+  background: var(--border);
+}
+
+.letter-footer svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 1.5;
+}
+
+.letter-eyebrow {
+  margin: 0 0 17px;
+  color: var(--letter-wine);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.welcome-screen {
+  width: min(100%, 650px);
+  margin: auto;
+  text-align: center;
+}
+
+.welcome-screen__flourish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  color: var(--letter-rose);
+}
+
+.welcome-screen__flourish span {
+  width: 42px;
+  height: 1px;
+  background: var(--letter-champagne);
+}
+
+.welcome-screen__flourish svg {
+  width: 21px;
+  height: 21px;
+  fill: color-mix(in oklab, var(--letter-rose) 14%, transparent);
+  stroke-width: 1.4;
+}
+
+.welcome-screen__title,
+.section-title,
+.apology-screen__message,
+.question-screen__title,
+.ending-screen__message {
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-weight: 500;
+}
+
+.welcome-screen__title {
+  margin: 0;
+  font-size: 56px;
+  line-height: 1.13;
+}
+
+.welcome-screen__title em {
+  color: var(--letter-wine);
+  font-weight: 400;
+}
+
+.welcome-screen__subtitle {
+  max-width: 470px;
+  margin: 20px auto 0;
+  color: var(--muted-foreground);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.welcome-form {
+  width: min(100%, 410px);
+  margin: 42px auto 0;
+  text-align: left;
+}
+
+.welcome-form__label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--foreground);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.date-field {
+  display: flex;
+  height: 58px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--card) 82%, transparent);
+  padding: 0 16px;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.date-field:focus-within {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 15%, transparent);
+}
+
+.date-field--error {
+  border-color: var(--destructive);
+}
+
+.date-field__icon {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  color: var(--letter-wine);
+  stroke-width: 1.6;
+}
+
+.letter-input {
+  height: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  box-shadow: none;
+}
+
+.letter-input::placeholder {
+  color: var(--muted-foreground);
+  opacity: 0.72;
+}
+
+.letter-input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.welcome-form__hint,
+.welcome-form__error {
+  min-height: 21px;
+  margin: 10px 0 20px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.welcome-form__hint {
+  color: var(--muted-foreground);
+}
+
+.welcome-form__error {
+  color: var(--destructive);
+}
+
+.letter-button {
+  min-height: 50px;
+  border-radius: 6px;
+  padding: 0 22px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.letter-button--primary {
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: 0 8px 20px -12px var(--letter-shadow);
+}
+
+.letter-button--primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: var(--letter-wine);
+  background: var(--letter-wine);
+  color: var(--primary-foreground);
+}
+
+.letter-button--primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.letter-button--primary:disabled {
+  opacity: 0.56;
+}
+
+.letter-button--quiet {
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--card) 72%, transparent);
+  color: var(--foreground);
+}
+
+.letter-button--quiet:hover {
+  border-color: var(--letter-rose);
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.welcome-form__submit {
+  width: 100%;
+  justify-content: space-between;
+  padding-inline: 20px;
+}
+
+.welcome-form__submit span {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.reasons-screen {
+  width: min(100%, 760px);
+  margin: auto;
+}
+
+.reasons-screen__intro {
+  margin-bottom: 27px;
+  text-align: center;
+}
+
+.section-title {
+  margin: 0;
+  font-size: 43px;
+  line-height: 1.18;
+}
+
+.section-subtitle {
+  margin: 11px 0 0;
+  color: var(--muted-foreground);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.reason-progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 13px;
+}
+
+.reason-progress__count {
+  flex: 0 0 auto;
+  color: var(--letter-wine);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.reason-progress__bar {
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  overflow: hidden;
+  border: 0;
+  border-radius: 99px;
+  background: var(--secondary);
+}
+
+.reason-progress__bar::-webkit-progress-bar {
+  border-radius: 99px;
+  background: var(--secondary);
+}
+
+.reason-progress__bar::-webkit-progress-value {
+  border-radius: 99px;
+  background: var(--primary);
+  transition: width 320ms ease;
+}
+
+.reason-progress__bar::-moz-progress-bar {
+  border-radius: 99px;
+  background: var(--primary);
+  transition: width 320ms ease;
+}
+
+.reason-card {
+  display: grid;
+  min-height: 290px;
+  grid-template-columns: 145px minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: color-mix(in oklab, var(--card) 82%, transparent);
+  padding: 34px 38px;
+  box-shadow: var(--letter-shadow);
+  animation: reason-arrive 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.reason-card__number {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: var(--letter-champagne);
+  font-family: var(--font-display);
+  font-size: 91px;
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+.reason-card__number span {
+  margin-top: 9px;
+  color: var(--muted-foreground);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.reason-card__copy {
+  color: var(--foreground);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.reason-card__copy p {
+  margin: 0;
+}
+
+.reason-card__copy > p + p {
+  margin-top: 12px;
+}
+
+.reason-card__postscript {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+  border-top: 1px solid var(--border);
+  padding-top: 15px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.reason-card__postscript-label {
+  flex: 0 0 auto;
+  color: var(--letter-wine);
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+}
+
+.reason-navigation {
+  display: flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.reason-navigation > span {
+  min-width: 1px;
+}
+
+.apology-screen,
+.question-screen,
+.ending-screen {
+  position: relative;
+  width: min(100%, 810px);
+  margin: auto;
+  text-align: center;
+}
+
+.apology-screen {
+  padding: 60px 38px;
+  border: 1px solid color-mix(in oklab, var(--letter-rose) 28%, var(--border));
+  border-radius: 8px;
+  background: var(--letter-apology-wash);
+  box-shadow: var(--letter-shadow);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.apology-screen__message {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  max-width: 740px;
+  margin: 0 auto;
+  font-size: 39px;
+  line-height: 1.34;
+  overflow-wrap: anywhere;
+  animation: message-arrive 900ms ease both;
+}
+
+.apology-screen__message span + span {
+  color: var(--letter-wine);
+  font-size: 0.78em;
+  font-style: italic;
+}
+
+.apology-screen__button {
+  position: relative;
+  z-index: 1;
+  margin-top: 34px;
+}
+
+.apology-screen__hearts {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+}
+
+.apology-heart {
+  position: absolute;
+  color: var(--letter-rose);
+  fill: color-mix(in oklab, var(--letter-rose) 13%, transparent);
+  stroke-width: 1.2;
+  animation: heart-drift 5s ease-in-out infinite;
+}
+
+.apology-heart--one {
+  top: 15%;
+  left: 9%;
+  width: 17px;
+  height: 17px;
+}
+
+.apology-heart--two {
+  right: 9%;
+  bottom: 19%;
+  width: 14px;
+  height: 14px;
+  animation-delay: -1.5s;
+}
+
+.apology-heart--three {
+  top: 20%;
+  right: 16%;
+  width: 10px;
+  height: 10px;
+  animation-delay: -3s;
+}
+
+.question-screen {
+  max-width: 690px;
+}
+
+.question-screen__seal,
+.ending-screen__illustration {
+  display: flex;
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 26px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--letter-wine);
+}
+
+.question-screen__seal svg {
+  width: 20px;
+  height: 20px;
+  fill: color-mix(in oklab, var(--letter-rose) 16%, transparent);
+  stroke-width: 1.4;
+}
+
+.question-screen__title {
+  margin: 0;
+  font-size: 60px;
+  line-height: 1.15;
+}
+
+.question-screen__subtitle {
+  margin: 17px 0 0;
+  color: var(--muted-foreground);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.question-screen__choices {
+  display: grid;
+  width: min(100%, 440px);
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 38px auto 0;
+}
+
+.ending-screen {
+  max-width: 700px;
+}
+
+.ending-screen__illustration {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 28px;
+  color: var(--letter-rose);
+}
+
+.ending-screen__illustration svg {
+  width: 25px;
+  height: 25px;
+  fill: color-mix(in oklab, var(--letter-rose) 18%, transparent);
+  stroke-width: 1.35;
+}
+
+.ending-screen__illustration span {
+  position: absolute;
+  right: -7px;
+  bottom: 4px;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--letter-champagne);
+  border-radius: 50%;
+}
+
+.ending-screen__message {
+  margin: 0;
+  font-size: 39px;
+  line-height: 1.42;
+  animation: message-arrive 820ms ease both;
+}
+
+.ending-screen__signoff {
+  margin: 22px 0 0;
+  color: var(--letter-wine);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+@keyframes screen-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reason-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes message-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heart-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.64;
+  }
+  50% {
+    transform: translateY(-5px);
+    opacity: 0.92;
+  }
+}
+
+@media (max-width: 700px) {
+  .letter-page {
+    padding: 18px;
+  }
+
+  .letter-shell {
+    min-height: calc(100svh - 36px);
+  }
+
+  .letter-topline {
+    min-height: 46px;
+  }
+
+  .letter-screen {
+    padding: 38px 0 30px;
+  }
+
+  .welcome-screen__title {
+    font-size: 44px;
+  }
+
+  .section-title {
+    font-size: 36px;
+  }
+
+  .reason-card {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 27px 24px;
+  }
+
+  .reason-card__number {
+    font-size: 53px;
+  }
+
+  .reason-card__number span {
+    margin-top: 5px;
+  }
+
+  .reason-card__copy {
+    font-size: 16px;
+  }
+
+  .apology-screen {
+    padding: 50px 23px;
+  }
+
+  .apology-screen__message {
+    font-size: 28px;
+  }
+
+  .question-screen__title {
+    font-size: 47px;
+  }
+
+  .ending-screen__message {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 420px) {
+  .letter-page {
+    padding: 14px;
+  }
+
+  .letter-shell {
+    min-height: calc(100svh - 28px);
+  }
+
+  .letter-topline__mark,
+  .letter-topline__lock {
+    gap: 6px;
+    font-size: 10px;
+  }
+
+  .welcome-screen__title {
+    font-size: 37px;
+  }
+
+  .welcome-screen__subtitle {
+    font-size: 14px;
+  }
+
+  .welcome-form {
+    margin-top: 32px;
+  }
+
+  .reason-navigation .letter-button {
+    padding-inline: 16px;
+  }
+
+  .apology-screen__message {
+    font-size: 25px;
+  }
+
+  .question-screen__choices {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 30px;
+  }
+
+  .question-screen__title {
+    font-size: 41px;
+  }
+
+  .ending-screen__message {
+    font-size: 29px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

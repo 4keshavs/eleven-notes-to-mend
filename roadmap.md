@@ -1,0 +1,4 @@
+- [x] Build all five requested screens and preserve the supplied copy.
+- [x] Establish the romantic color, type, spacing, and motion system with mobile layouts.
+- [x] Add a focused test for the exact eight-digit welcome code.
+- [x] Verify the welcome, reason navigation, apology, final choices, and mobile presentation.
